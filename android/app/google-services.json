@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651473191286",
+    "project_id": "shreyaflutter",
+    "storage_bucket": "shreyaflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651473191286:android:572958b445f77faddb7a57",
+        "android_client_info": {
+          "package_name": "com.example.shreya_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651473191286-oi9qr6kf6chkt2e4bddtefmng696bg5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzK0Ad0qcm4UjYqecZSEKg1SWiWWmjeoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651473191286-oi9qr6kf6chkt2e4bddtefmng696bg5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
