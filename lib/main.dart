@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'SignIn.dart';
 import 'package:shreya_flutter/HomeScreen.dart';
-import 'homepage.dart';
 
 final auth = FirebaseAuth.instance;
 void main() async {

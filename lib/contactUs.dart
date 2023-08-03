@@ -27,6 +27,7 @@ class _contactUsState extends State<contactUs> {
               ),
 
               Container(
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 15),
                 child: Card(
                   child: ListTile(
                     leading: Icon(Icons.email,size: 26,color: Colors.redAccent,),
@@ -38,6 +39,7 @@ class _contactUsState extends State<contactUs> {
               ),
 
               Container(
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 15),
                 child: Card(
                   child: ListTile(
                     leading: Icon(Icons.phone,size: 26,color: Colors.redAccent),
@@ -51,7 +53,8 @@ class _contactUsState extends State<contactUs> {
             ],
           ),
         ),
-        
+
+
       ),
     );
   }

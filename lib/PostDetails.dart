@@ -5,6 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shreya_flutter/submit.dart';
+
+import 'post_successful.dart';
+
 class Post extends StatefulWidget {
   const Post({Key? key}) : super(key: key);
 
@@ -56,7 +60,6 @@ class _PostState extends State<Post> {
       "facilities" : facilitiesC.text,
     });
   }
-
 
 
   @override
@@ -125,6 +128,7 @@ class _PostState extends State<Post> {
                         ),
                       ),
                     ),
+
                     Padding(padding: EdgeInsets.only(top: 20.0),
                       child: TextFormField(
                         controller: emailC,
@@ -151,6 +155,7 @@ class _PostState extends State<Post> {
                         ),
                       ),
                     ),
+
                     Padding(padding: EdgeInsets.only(top: 20.0),
                       child: TextFormField(
                         controller: cityC,
@@ -163,6 +168,7 @@ class _PostState extends State<Post> {
                         ),
                       ),
                     ),
+
                     Padding(padding: EdgeInsets.only(top: 20.0),
                       child: TextFormField(
                         controller: stateC,
@@ -242,7 +248,7 @@ class _PostState extends State<Post> {
                     ),
                     SizedBox(height: 5,),
                     Center(
-                      child: Text('Please enter the collage of room images , We are not able to store multiple images yet . We will fix this bug soon',style: TextStyle(
+                      child: Text('Enter room Images. You can enter upto 9 images',style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.normal,
                       ),),
@@ -261,7 +267,7 @@ class _PostState extends State<Post> {
                       child: TextFormField(
                         controller: discriptionC,
                         keyboardType: TextInputType.multiline,
-                        maxLines: 20,
+                        maxLines: 10,
                         maxLength: 600,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),labelText: "Add Discription ",
@@ -286,7 +292,7 @@ class _PostState extends State<Post> {
                       child: TextFormField(
                         controller: tcC,
                         keyboardType: TextInputType.multiline,
-                        maxLines: 30,
+                        maxLines: 10,
                         maxLength: 1000,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),labelText:'T&C',
@@ -313,7 +319,7 @@ class _PostState extends State<Post> {
                       child: TextFormField(
                         controller: facilitiesC,
                         keyboardType: TextInputType.multiline,
-                        maxLines: 30,
+                        maxLines: 10,
                         maxLength: 600,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),labelText:'Facilities',
@@ -342,6 +348,7 @@ class _PostState extends State<Post> {
                               if(images!.isNotEmpty){
                                 uploadFunction(images!);
                                 sendData();
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Post_successful()));
                               }else{
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Select Images")));
                               }
@@ -370,7 +377,6 @@ class _PostState extends State<Post> {
     ),);
   }
 
-
   Future getSingleImage () async{
     final pickedImage = await singlepicker.getImage(source: (ImageSource.gallery));
     setState(() async {
@@ -389,14 +395,11 @@ class _PostState extends State<Post> {
         images!.addAll(selectImages);
       }
       else{
-        print('No images Selected');
+        print('No images selected');
       }
     }
     );
   }
-
-
-
 
   void uploadFunction(List<XFile> images){
     setState(() {
@@ -408,8 +411,6 @@ class _PostState extends State<Post> {
 
     }
   }
-
-
 
   Future <Object> uploadFile(XFile images )async{
     var uniqueKey = firestoreRef.collection(collectionName).doc();

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'PropertyDetailScreen.dart';
 
 class SearchList extends StatefulWidget {
   const SearchList({Key? key}) : super(key: key);
@@ -83,15 +84,19 @@ class _SearchListState extends State<SearchList> {
                         DocumentSnapshot course = snapshot.data!.docs[index];
                         return Card(
                           child: ListTile(
-                            onTap: () {},// ONTAP
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                  PropertyDetailScreen(course)),
+                              );
+                            },// ONTAP
                             leading : Image.network(course['cover img']),
                             title: Text(course ['city']),
                             subtitle: Text(course['address']),
                             trailing: Text(course['price'],style: TextStyle(
                               fontSize: 12,fontWeight: FontWeight.bold,
                               color : Colors.redAccent,
-
-                            ),),
+                            ),
+                            ),
                           ),
 
                         );

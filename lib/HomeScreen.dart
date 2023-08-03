@@ -39,10 +39,7 @@ class _HouseScreenState extends State<HouseScreen> {
         onTap: (index) =>setState(() =>currentIndex = index),
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_a_photo), label: 'Post'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_rounded), label: 'Activity'),
-
-
+          BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_rounded), label: 'Notifications'),
           BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
       ),

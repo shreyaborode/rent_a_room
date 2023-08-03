@@ -1,6 +1,5 @@
-
 import 'dart:developer';
-
+import 'list.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shreya_flutter/SignIn.dart';
 import 'package:shreya_flutter/SignUp.dart';
 import 'package:shreya_flutter/main.dart';
+import 'package:shreya_flutter/setting_page.dart';
 import 'package:shreya_flutter/users.dart';
 import 'HomeScreen.dart';
 import 'SearchList.dart';
@@ -15,7 +15,6 @@ import 'about.dart';
 import 'categories.dart';
 import 'contactUs.dart';
 import 'favourite.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,9 +65,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0.3,
         backgroundColor: Colors.redAccent,
-        title: Text('Rent A Room'),
+        title: Text('Mess App'),
         actions: <Widget>[
-          IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchList()));}, icon: Icon(Icons.search_rounded))
+          IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>List()));}, icon: Icon(Icons.search_rounded))
         ],
 
       ),
@@ -111,51 +110,6 @@ class _HomePageState extends State<HomePage> {
                 }
               },
             ),
-
-
-
-
-
-            // StreamBuilder(
-            //     stream: FirebaseFirestore.instance.collection("UserData")
-            //         .where("uid", isEqualTo: currentUser.currentUser!.uid)
-            //         // .doc(currentUser.currentUser!.uid)
-            //         .snapshots(),
-            //     builder: (context,AsyncSnapshot<QuerySnapshot>snapshot){
-            //
-            //       if(snapshot.hasData){
-            //
-            //         return ListView.builder(
-            //             itemCount: snapshot.data!.docs.length,
-            //             shrinkWrap: true,
-            //             itemBuilder: (context,i){
-            //               var data = snapshot.data!.docs[i];
-            //               return UserAccountsDrawerHeader(
-            //                   accountName: Text(data['name']),
-            //                   accountEmail: Text(data['email']
-            //                   ),
-            //
-            //                 currentAccountPicture: GestureDetector(
-            //                   child: new CircleAvatar(
-            //                     backgroundColor: Colors.grey,
-            //                     child: Icon(
-            //                       Icons.person_outline,
-            //                       color: Colors.white,
-            //                     ),
-            //                   ),
-            //                 ),
-            //                 decoration: new BoxDecoration(
-            //                   color: Colors.redAccent,
-            //                 ),
-            //
-            //               );
-            //             });
-            //
-            //       }else{
-            //         log("Snapshot data not found");
-            //         return CircularProgressIndicator();
-            //       }
-            //     }),
 
 
 
@@ -207,7 +161,8 @@ class _HomePageState extends State<HomePage> {
 
             InkWell(
               onTap: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage()),
+                );
               },
               child: ListTile(
                 title: Text('Settings'),
@@ -238,7 +193,6 @@ class _HomePageState extends State<HomePage> {
             ),
 
             Divider(),
-
             InkWell(
               onTap: (){
                   logout();
@@ -254,11 +208,169 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body:  Column(
-        children: [
-          image_carousel
-        ],
-      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            image_carousel,
+
+            SizedBox(height: 20,
+              child: Divider(color: Colors.black54,),),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              width: double.infinity,
+              //height: 80,
+              decoration: BoxDecoration(
+                color: Color(0xff4a3298),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text.rich(
+                  TextSpan(
+                      text: 'Special offer\n',style: TextStyle(color: Colors.white),
+                      children: [
+                        TextSpan(
+                            text: 'Cashback 20%',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400)
+                        )
+                      ]
+                  )
+              ),
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Text('Categories',style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500
+                  ),),
+                  SizedBox(width: 130,),
+                  Text('Scroll for more',style: TextStyle(color: Colors.black54),)
+                ],
+              ),
+            ),
+            SizedBox(height: 15,),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 15),
+              child: Card(
+                child: ListTile(
+                  leading: Image.asset('images/img5.jpg'),
+                  title: Text('Rooms',style: TextStyle(fontSize: 18,color: Colors.black54,fontWeight: FontWeight.w400),),
+                  trailing: Icon(Icons.arrow_forward_outlined),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 15),
+              child: Card(
+                child: ListTile(
+                  leading: Image.asset('images/img5.jpg'),
+                  title: Text('Flats',style: TextStyle(fontSize: 18,color: Colors.black54,fontWeight: FontWeight.w400),),
+                  trailing: Icon(Icons.arrow_forward_outlined),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 15),
+              child: Card(
+                child: ListTile(
+                  leading: Image.asset('images/img5.jpg'),
+                  title: Text('Houses',style: TextStyle(fontSize: 18,color: Colors.black54,fontWeight: FontWeight.w400),),
+                  trailing: Icon(Icons.arrow_forward_outlined),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 15),
+              child: Card(
+                child: ListTile(
+                  leading: Image.asset('images/img5.jpg'),
+                  title: Text('View All',style: TextStyle(fontSize: 18,color: Colors.black54,fontWeight: FontWeight.w400),),
+                  trailing: Icon(Icons.arrow_forward_outlined),
+                  onTap: (){},
+                ),
+              ),
+            ),
+            SizedBox(
+              child: Divider(),
+            ),
+
+            SizedBox(
+              height: 50,
+              child: Divider(color: Colors.grey,),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Future scopes',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.black54),),
+                  ),
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 160,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset('images/google_maps.jpg',fit: BoxFit.cover,),
+                  ),
+                  SizedBox(height: 10,),
+                  Text('Users are able to locate the rooms using Google Maps',style: TextStyle(
+                      color: Colors.black87,fontSize: 16,fontWeight: FontWeight.w400
+                  ),),
+                  Divider(color: Colors.grey,),
+                  SizedBox(height: 15,),
+                  Container(
+                    height: 160,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset('images/Upi.jpg',fit: BoxFit.cover,),
+                  ),
+                  SizedBox(height: 10,),
+                  Text('Payments are directly done in the Application',style: TextStyle(
+                      color: Colors.black87,fontSize: 16,fontWeight: FontWeight.w400
+                  ),),
+                  Divider(color: Colors.grey,),
+                  SizedBox(height: 15,),
+                  Container(
+                    height: 160,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset('images/otp.jpg',fit: BoxFit.cover,),
+                  ),
+                  SizedBox(height: 10,),
+                  Text('Verify the user using OTP',style: TextStyle(
+                      color: Colors.black87,fontSize: 16,fontWeight: FontWeight.w400
+                  ),),
+                  Divider(color: Colors.grey,),
+                  SizedBox(height: 15,),
+                  Container(
+                    height: 160,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset('images/chatbot.jpg',fit: BoxFit.cover,),
+                  ),
+                  SizedBox(height: 10,),
+                  Text('Implementing Chatbots..',style: TextStyle(
+                      color: Colors.black87,fontSize: 16,fontWeight: FontWeight.w400
+                  ),),
+                  SizedBox(height: 50,)
+                ],
+              ),
+            ),
+
+          ],
+        ),
+      )
     );
   }
 }
